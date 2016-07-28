@@ -16,7 +16,7 @@ CHOICE /M "Are you sure you want to run this script?"
 IF %ERRORLEVEL% == 2 GOTO EXIT
 
 :: The following section will check to make sure guest OS is Windows 10 before proceeding.
-:: Previous versions of Windows do not need this patch.
+:: Other versions of Windows should download their respective version of this script.
 :CHK_WINVER
 setlocal
 for /f "tokens=4-5 delims=. " %%i in ('ver') do set WINVER=%%i.%%j
@@ -38,6 +38,9 @@ IF NOT %ERRORLEVEL% == 0 (
 	GOTO EXIT
 ) ELSE GOTO START
 
+:: The following section will prompt the user to choose which level of optimizations
+:: they want applied to their system. All of these are safe and should work without any issues.
+:: DEFAULT will restore all services to Windows default values.
 :START
 ECHO.
 ECHO Please choose one of the following service optimizations...
@@ -50,6 +53,8 @@ IF %ERRORLEVEL% == 1 GOTO DEFAULT
 IF %ERRORLEVEL% == 2 GOTO SAFE
 IF %ERRORLEVEL% == 3 GOTO TWEAKED
 
+:: The following section will restore all Windows services to their
+:: known default startup values. This will remove any problems that might occur.
 :DEFAULT
 ECHO.
 ECHO Now applying DEFAULT service optimizations -- This shouldn't take long...
@@ -275,6 +280,8 @@ ECHO    ^> XblGameSave set to DEMAND & sc config XblGameSave start=demand >NUL 2
 ECHO    ^> XboxNetApiSvc set to DEMAND & sc config XboxNetApiSvc start=demand >NUL 2>&1
 GOTO WIFI
 
+:: The following section will apply "safe" optimizations to the Windows services.
+:: These are known to be safe for all users and should not cause issues.
 :SAFE
 ECHO.
 ECHO Now applying SAFE service optimizations -- This shouldn't take long...
@@ -500,6 +507,9 @@ ECHO    ^> XblGameSave set to DISABLED & sc config XblGameSave start=disabled >N
 ECHO    ^> XboxNetApiSvc set to DISABLED & sc config XboxNetApiSvc start=disabled >NUL 2>&1
 GOTO WIFI
 
+:: The following section will apply "tweaked" optimizations to the Windows services.
+:: These should be safe for all users, but there's a small chance that problems could occur
+:: depending on the users average workload.
 :TWEAKED
 ECHO.
 ECHO Now applying TWEAKED service optimizations -- This shouldn't take long...
@@ -725,6 +735,8 @@ ECHO    ^> XblGameSave set to DISABLED & sc config XblGameSave start=disabled >N
 ECHO    ^> XboxNetApiSvc set to DISABLED & sc config XboxNetApiSvc start=disabled >NUL 2>&1
 GOTO WIFI
 
+:: The following section will ask the user if they use WiFi. In most cases this will be YES,
+:: but in case the user is connected to the Internet via LAN then it is safe to disable the WLAN service.
 :WIFI
 ECHO.
 CHOICE /M "Do you use a Wireless connection?"
