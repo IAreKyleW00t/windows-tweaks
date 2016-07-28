@@ -1,6 +1,7 @@
 Windows Tweaks
 ==============
-A small collection of useful scripts for optimizing, cleaning, and tweaking the Windows OS (XP and newer).
+A small collection of useful scripts for optimizing, cleaning, and tweaking the Windows OS (XP and newer).  
+:exclamation::exclamation: **WARNING**: These scripts *may* come up as false-positives by your AV. :exclamation::exclamation:
 
 **This repo is designed for inexperience users**. I will not be including unsafe or "dangerous" tweaks that may negatively effect the average user. Even with that said, it is still advised to **proceed with caution** -- I am not perfect; mistakes can happen.
 
