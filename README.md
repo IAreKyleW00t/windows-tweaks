@@ -24,13 +24,13 @@ The [`hosts`](https://en.wikipedia.org/wiki/Hosts_(file)) file in Windows is loc
 #### FIREWALL
 The [firewall](https://en.wikipedia.org/wiki/Windows_Firewall) in Windows is a utility that allows a user to control the network traffic that comes in and out of their PC. The script in this repo will update the firewall to include multiple rules that block all outbound requests to known IP's that used to track/collect user data on all protocols. **This will not break Windows updates.**
 
-#### Telemetry
+#### TELEMETRY
 [Telemetry](https://en.wikipedia.org/wiki/Telemetry) is an automated communications process by which measurements and other data are collected at remote or inaccessible points and transmitted to receiving equipment for monitoring. This script in this repo will disable this "feature" to prevent any user data from being sent to Microsoft.
 
-#### Services
+#### SERVICES
 [Services](https://en.wikipedia.org/wiki/Windows_service) in Windows are small programs that run in the background that assist other larger programs. The script in this repo will stop and disable the `dmwappushservice`, `diagtrack`, and `Wecsvc` services to prevent any user data from being sent to Microsoft. Users who wish to completely remove these services can use the `sc delete` command.
 
-#### Diagnostics Tracking Log
+#### DIAGTRACK LOG
 Diagnostic information is logged to a file named `Autologger-Diagtrack-Listener.etl` that is located in `C:\ProgramData\Microsoft\Diagnosis\ETLLogs\Autologger`. This information is sent to Microsoft to collect information about their users. In addition to disabling the service(s) that control this function, the script in this repo will lock down said file to prevent the system from accessing it and then clear the entire file.
 
 ---
